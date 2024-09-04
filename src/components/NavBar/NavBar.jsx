@@ -105,7 +105,7 @@ export default function NavBar() {
               ) : null}
 
               <ul className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4  items-center ">
-               <NavLink to='cart'> 
+               {token ? <><NavLink to='cart'> 
                 <li className=" relative">
                   <div
                     className={
@@ -118,7 +118,7 @@ export default function NavBar() {
                   </div>
                   <i className="fa-solid fa-cart-shopping text-green-800 text-3xl"></i>
                 </li>
-                </NavLink>
+                </NavLink></> :null}
               </ul>
               <ul className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4  items-center  pr-8">
 

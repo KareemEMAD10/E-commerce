@@ -54,7 +54,7 @@ export default function Productdetails(addCart,loding) {
     axios
       .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
       .then(({ data }) => {
-        setIsLoding(false);
+        setIsLoading(false);
         setProductDetails(data.data);
         if (relatedProduct.length) {
           getFilterData(relatedProduct);
@@ -169,7 +169,7 @@ export default function Productdetails(addCart,loding) {
                 <ProductItem
                   key={product.id}
                   addCart={addCart}
-                  loding={loding}
+                  loding={isLoading}
                   product={product}
                 />
               ))}

@@ -33,9 +33,11 @@ export default function RecentProducts() {
    setIsLoding(false)
    if (data.status == "success"){
     toast.success('Successfully , The item has been added');
+    setIsLoding(false)
    }
    else{
     toast.error('This is an error!');
+    setIsLoding(false)
    }
   }
  

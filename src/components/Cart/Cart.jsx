@@ -15,26 +15,23 @@ export default function Cart() {
   useEffect(() => {
     getCartInfo();
   }, []);
-
+   //---------------getCartInfo-------------//
   async function getCartInfo() {
     let res = await getProductToCart();
     console.log(res, "gggggggggggggg");
 
     setCartItemsNum(res.data.numOfCartItems);
     console.log("fghfghjjkjjjghghgfhfh", res.data.numOfCartItems);
-    //  if(res.data){
+   
     setCartInfo(res.data);
-    //  }
-    //  else{
-    //   setNoCartInfo(" Cart is not found , please start to shooping")
-    //  }
+  
 
     setCartId(res.data.data._id);
     setTimeout(() => {
       setIsLoding(false);
     }, 10);
   }
-
+ //--------------removeItem--------------//
   async function removeItem(id) {
     let res = await removeProduct(id);
     console.log(res);
@@ -45,13 +42,13 @@ export default function Cart() {
     );
     setCartInfo(res.data);
   }
-
+  //-----------------updateProduct-------------------//
   async function updateProduct(id, count) {
     let res = await updateProductCount(id, count);
     console.log(res);
     setCartInfo(res.data);
   }
-
+   //-----------------clearCartItems---------------//
   async function clearCartItems() {
     let { data } = await clearCart();
     console.log("clear cart", data);
@@ -62,7 +59,7 @@ export default function Cart() {
       Navigate('/home')
     }
   }
-
+   //---------------goToCheckOut--------------//
   function goToCheckOut() {
     Navigate(`/checkout/${cartId}`);
   }
@@ -70,7 +67,7 @@ export default function Cart() {
 
   return (
     <>
-      <div className=" w-[70%] mx-auto my-10 relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className=" w-[70%] mx-auto my-10 relative overflow-x-auto shadow-md sm:rounded-lg ">
         <h1 className=" text-black  text-center  font-bold text-2xl mt-8 mb-4">
           Shopping Cart
         </h1>
@@ -226,6 +223,7 @@ export default function Cart() {
                           onClick={clearCartItems}
                           className="bg-red-600 text-white rounded-xl hover:bg-red-700 hover:border-red-300 hover:border-2 w-[25%] mt-4 "
                         >
+                          
                           Clear
                         </button>
                       )}

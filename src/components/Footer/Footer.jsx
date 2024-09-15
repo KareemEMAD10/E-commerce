@@ -7,7 +7,7 @@ export default function Footer() {
   useEffect(() => {}, []);
   return (
     <>
-      <footer className="w-full right-0 bottom-0 left-0 fixed bg-slate-500 opacity-70">
+      <footer className="w-full bottom-0 right-0 left-0   bg-slate-500 opacity-70 fixed">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <NavLink
             className="flex items-center text-2xl font-black pr-40"

@@ -80,7 +80,7 @@ export default function Register() {
       )}
       <form
         onSubmit={myForm.handleSubmit}
-        className=" max-w-xl mx-auto md:w-full bg-slate-50 p-2 mt-6 rounded-xl items-center justify-center "
+        className=" max-w-xl mx-auto md:w-full bg-slate-50 p-2 mt-32 rounded-xl items-center justify-center  "
       >
         <div className="mb-5 md:w-full">
           <h1 className="text-2xl font-bold pb-4">Register Now : </h1>

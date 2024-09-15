@@ -31,10 +31,12 @@ export default function Productdetails(addCart,loding) {
   useEffect(() => {
     getProductDetails();
     getRelatedProducts();
+    
   }, []);
 
   useEffect(() => {
     getProductDetails();
+    
   }, [id]);
 
   //-------ChangeState----------//
@@ -69,11 +71,11 @@ export default function Productdetails(addCart,loding) {
     axios
       .get(`https://ecommerce.routemisr.com/api/v1/products`)
       .then(({ data }) => {
-        getFilterData(data, data);
+        getFilterData(data,data);
       })
       .catch(({ err }) => console.log(err));
   }
-
+      //-------------filter----------------//
   function getFilterData({ data }) {
     let res = data.filter(
       (ele) => ele.category._id == categoryId && ele.id != id
@@ -105,79 +107,87 @@ export default function Productdetails(addCart,loding) {
 
   return (
     <>
-      <div className="items-center justify-between p-6 ">
+      <div className="p-6">
+        
         <Helmet>
           <meta charSet="utf-8" />
           <title>{Productdetails?.title}</title>
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
+  
         
+        <div className="flex flex-col md:flex-row items-center justify-between">
           
-            <div className=" flex flex-col md:flex md:flex-row items-center justify-between  ">
-              <div className="w-full  md:w-1/3 py-4  pr-6">
-                <Slider {...settings}>
-                  {Productdetails?.images.map((src) => (
-                    <img src={src} className="w-full " />
-                  ))}
-                </Slider>
-              </div>
-              <div className="w-full md:w-2/3 py-4 pl-3">
-                <h2 className="text-4xl font-bold mb-4">
-                  {Productdetails?.title}
-                </h2>
-                <p className="mb-4 text-gray-400 font-light">
-                  {Productdetails?.description}
-                </p>
-                <span className="mb-4  text-sky-800 font-mono text-xl">
-                  {Productdetails?.category.name}
-                </span>
-                <div className="flex justify-between">
-                  <span>{Productdetails?.price}EGP</span>
-                  <span>
-                    {Productdetails?.ratingsAverage}
-                    <i className="fa fa-solid fa-star text-yellow-300"></i>
-                  </span>
-                </div>
-                <div className="p-2 ">
-                  <button
-                    className="btn rounded-xl "
-                    onClick={() => {
-                      addCart(Productdetails?.id);
-                      ChangeState(id);
-                    }}
-                  >
-                    {isLoading && items[Productdetails.id] ? (
-                      <i className="fa fa-spinner fa-spin"></i>
-                    ) : (
-                      <span>
-                        Add To Cart
-                        <i className="fa-solid fa-cart-shopping text-white"></i>
-                      </span>
-                    )}
-                  </button>
-                </div>
-                <h3 className="text-center text-black">
-                  --------------------------------------
-                </h3>
-              </div>
-            </div>
-            <h2 className="text-xl text-blue-800 font-mono pl-4 pb-4">
-              Related Products
-            </h2>
-            <div className="row grid gap-4  sm:grid-cols-3 sm:grid-rows-3 md:grid-cols-4 md:grid-rows-4   lg:grid-cols-5 lg:grid-rows-5">
-              {relatedProduct.map((product) => (
-                <ProductItem
-                  key={product.id}
-                  addCart={addCart}
-                  loding={isLoading}
-                  product={product}
-                />
+          <div className="w-full md:w-1/3 py-4 pr-6">
+            <Slider {...settings}>
+              {Productdetails?.images.map((src, index) => (
+                <img key={index} src={src} alt="Product" className="w-full" />
               ))}
-            </div>
+            </Slider>
+          </div>
+  
          
+          <div className="w-full md:w-2/3 py-4 pl-3">
+            <h2 className="text-4xl font-bold mb-4">{Productdetails?.title}</h2>
+            <p className="mb-4 text-gray-400 font-light">
+              {Productdetails?.description}
+            </p>
+            <span className="mb-4 text-sky-800 font-mono text-xl">
+              {Productdetails?.category.name}
+            </span>
+  
+            <div className="flex justify-between items-center my-4">
+              <span className="text-xl font-semibold text-gray-700">
+                {Productdetails?.price} EGP
+              </span>
+              <span className="flex items-center">
+                {Productdetails?.ratingsAverage}
+                <i className="fa fa-star text-yellow-400 ml-1"></i>
+              </span>
+            </div>
+  
+            
+            <div className="mt-4">
+              <button
+                className="btn w-full bg-blue-600 text-white py-2 rounded-xl flex justify-center items-center hover:bg-blue-700 transition-all"
+                onClick={() => {
+                  addCart(Productdetails?.id);
+                  ChangeState(id);
+                }}
+              >
+                {isLoading && items[Productdetails.id] ? (
+                  <i className="fa fa-spinner fa-spin"></i>
+                ) : (
+                  <>
+                    Add To Cart
+                    <i className="fa-solid fa-cart-shopping ml-2"></i>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        
+        <div className="mt-8">
+          <h2 className="text-xl text-blue-800 font-mono mb-4">
+            Related Products
+          </h2>
+          
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            
+            {relatedProduct.map((product) => (
+              <ProductItem
+                key={product.id}
+                addCart={addCart}
+                loding={isLoading}
+                product={product}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-
-      
     </>
   );
+  
 }

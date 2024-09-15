@@ -1,9 +1,24 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProductItem.module.css";
 import { Link } from "react-router-dom";
-export default function ProductItem({ product, addCart, loding }) {
+export default function ProductItem({ product, addCart }) {
   // let [currntId, setCurrntId] = useState(null);
   const[items,setItems]=useState([])
+  const [isAdding, setIsAdding] = useState(false);
+
+   //------------handleAddToCart--------------//  
+  const handleAddToCart = async () => {
+    setIsAdding(true);
+
+    try {
+      await addCart(product.id); 
+    } catch (error) {
+      console.error('Failed to add product to cart:', error);
+    } finally {
+      setIsAdding(false);
+    }
+  };
+  //---------------ChangeState---------------------//
   function ChangeState(id){
    
      setItems([])
@@ -20,8 +35,9 @@ export default function ProductItem({ product, addCart, loding }) {
     <>
     
       <div key={product.id} className="w-full p-1  ">
+        
         <div className="product  hover:rounded-xl overflow-hidden">
-          <Link to={`/productdetails/${product.id}/${product.category._id}`}>
+          <Link to={`/productdetails/${product.id}/${product.category._id}` }>
             <img src={product.imageCover} alt="" />
             <div className="p-2">
               <span className="text-green-500">{product.category.name}</span>
@@ -40,9 +56,10 @@ export default function ProductItem({ product, addCart, loding }) {
           <div className="p-2 ">
             <button
               className="btn rounded-xl "
-              onClick={() => {addCart(product.id);ChangeState(product.id)}}
+              onClick={() => {ChangeState(product.id);handleAddToCart()} }
+              disabled={isAdding}
             >
-              {loding && items[product.id] ? 
+              {isAdding && items[product.id] ? 
                 <i className="fa fa-spinner fa-spin"></i>
                : 
                 <span>

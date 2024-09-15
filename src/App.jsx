@@ -29,6 +29,7 @@ import ResetCode from "./components/ResetCode/ResetCode";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 
+
 const routers = createBrowserRouter([
   {
     path: "",
@@ -50,6 +51,7 @@ const routers = createBrowserRouter([
       {path:"checkout/:cartId",element:<ProtectedRoutes><CheckOut/></ProtectedRoutes>},
       {path:"allorders",element:<ProtectedRoutes><Orders/></ProtectedRoutes>},
       {path:"productdetails/:id",element:<ProtectedRoutes><Productdetails/></ProtectedRoutes>},
+      
       { path: "*", element: <Notfound />  }
      
     ],
@@ -57,7 +59,7 @@ const routers = createBrowserRouter([
 ]);
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   
   let{getProductToCart,setCartItemsNum}=useContext(CartContext)
   useEffect(()=>{

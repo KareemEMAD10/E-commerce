@@ -35,7 +35,7 @@ export default function RecentCategoroies() {
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-full h-[200px]  "
+                className="w-full h-[200px] px-2 "
               />
               <h2 className="p-3 text-white" >{category.name}</h2>
             </div>

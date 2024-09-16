@@ -20,16 +20,16 @@ export default function MainSlider() {
   return (
     <>
       <div className="row">
-        <div className="w-3/4">
+        <div className="md:w-3/4 w-full ">
           <Slider {...settings}>
-            <img src={Slider1} alt="photo1" className="h-[500px]" />
-            <img src={Slider2} alt="photo2" className="h-[500px]"  />
-            <img src={Slider3} alt="photo3"  className="h-[500px]" />
+            <img src={Slider1} alt="photo1" className="h-[200px] md:h-[500px]" />
+            <img src={Slider2} alt="photo2" className="h-[200px] md:h-[500px]"  />
+            <img src={Slider3} alt="photo3"  className="h-[200px] md:h-[500px]" />
           </Slider>
         </div>
-        <div className="w-1/4">
-          <img src={Slider2} alt="-----" className="h-[250px]"  />
-          <img src={Slider3} alt="-----" className="h-[250px]"  />
+        <div className="md:w-1/4 flex md:flex-col flex-row">
+          <img src={Slider2} alt="-----" className="md:h-[250px] h-100 md:full w-1/2"  />
+          <img src={Slider3} alt="-----" className="md:h-[250px] h-100 md:full w-1/2" />
         </div>
       </div>
     </>

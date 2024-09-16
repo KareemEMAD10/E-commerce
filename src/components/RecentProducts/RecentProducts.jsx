@@ -56,7 +56,7 @@ export default function RecentProducts() {
 
   return (
     <>
-      <div className="p-4 text-center">
+      <div className="p-4 ">
         {/* Search Box */}
         <input
           type="text"

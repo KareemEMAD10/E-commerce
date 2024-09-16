@@ -79,7 +79,7 @@ export default function ResetCode() {
             name="resetCode"
           />
           
-        </div>i
+        </div>
         <button
           disabled={isLoading}
           type="submit"
